@@ -1,14 +1,12 @@
 package fuzzysort.ui;
 
-import fuzzysort.solver.Graph;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
 import java.text.DecimalFormat;
 
 public abstract class Display2D extends JPanel {
-    protected static final boolean equalScaleDimensions = false;
+    public static boolean EqualScaleDimensions = false;
     protected static final int padding = 30;
     protected static final int DotRadius = 3;
     protected static final int DotDiameter = DotRadius * 2 + 1;
@@ -72,7 +70,7 @@ public abstract class Display2D extends JPanel {
 
         float width = maxX - minX;
         float height = maxY - minY;
-        if (equalScaleDimensions) {
+        if (EqualScaleDimensions) {
             if (width > height) {
                 minY -= (width - height) / 2;
                 //noinspection SuspiciousNameCombination

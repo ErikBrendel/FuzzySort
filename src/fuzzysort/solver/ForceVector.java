@@ -1,5 +1,7 @@
 package fuzzysort.solver;
 
+import java.util.Random;
+
 public class ForceVector {
     public float mainCoordinate;
     public final float[] otherCoordinates;
@@ -40,6 +42,24 @@ public class ForceVector {
 
     public static ForceVector upFor(Graph.Node node) {
         return new ForceVector(1, new float[node.otherCoordinates.length]);
+    }
+
+    public static ForceVector randomDirection(Random r, Graph.Node node) {
+        float main;
+        float[] others = new float[node.otherCoordinates.length];
+        ForceVector vec;
+        while (true) {
+            main = r.nextFloat() * 2 - 1;
+            for (int i = 0; i < others.length; i++) {
+                others[i] = r.nextFloat() * 2 - 1;
+            }
+            vec = new ForceVector(main, others);
+            float sqrMag = vec.getSqrMagnitude();
+            if (sqrMag <= 1 && sqrMag != 0) {
+                float mag = (float)Math.sqrt(sqrMag);
+                return vec.scale(1/mag);
+            }
+        }
     }
 
     private ForceVector(float mainCoordinate, float[] otherCoordinates) {

@@ -52,6 +52,12 @@ public class GraphDisplay extends Display2D {
 
     protected float getY(Graph.Node node) {
         float[] coords = node.otherCoordinates;
-        return coords.length > 0 ? coords[0] : Integer.parseInt(node.item);
+        if (coords.length > 0) return coords[0];
+        try {
+            return Integer.parseInt(node.item);
+        } catch (NumberFormatException ex) {
+            // no integers, sad
+        }
+        return graph.getAllNodes().indexOf(node);
     }
 }

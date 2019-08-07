@@ -10,6 +10,8 @@ import javax.swing.*;
 import java.util.Random;
 import java.util.function.Function;
 
+import static fuzzysort.ui.Display2D.EqualScaleDimensions;
+
 public class MainWindow extends JFrame {
 
     private final FuzzySortInstance instance;
@@ -17,8 +19,8 @@ public class MainWindow extends JFrame {
     private Solver solver;
     private Thread animatorThread = null;
 
-    private int passiveAnimationsPerFrame = 5;
-    private float passiveAnimationsStrength = 1f;
+    private int passiveAnimationsPerFrame = 20;
+    private float passiveAnimationsStrength = 0.1f;
 
     public MainWindow(FuzzySortInstance instance) {
         this.instance = instance;
@@ -69,9 +71,15 @@ public class MainWindow extends JFrame {
                 animatorThread = null;
             }
         });
-        addButton("passive animation settings", () -> {
+        addButton("Passive animation settings", () -> {
             passiveAnimationsPerFrame = getInputInt("steps per frame", passiveAnimationsPerFrame);
             passiveAnimationsStrength = getInputFloat("animation strength", passiveAnimationsStrength);
+        });
+        addButton("Disturb", () -> {
+            solver.graph.disturb(getInputFloat("Strength", 10));
+        });
+        addButton("Toggle Equal Scale", () -> {
+            EqualScaleDimensions = !EqualScaleDimensions;
         });
     }
 

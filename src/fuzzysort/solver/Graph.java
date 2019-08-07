@@ -123,6 +123,12 @@ public class Graph {
         return edges;
     }
 
+    public synchronized void disturb(float strength) {
+        for (Node node: nodes) {
+            node.applyForce(ForceVector.randomDirection(r, node).scale(strength));
+        }
+    }
+
     public static class Node {
         private final List<Edge> edges = new ArrayList<>();
 
