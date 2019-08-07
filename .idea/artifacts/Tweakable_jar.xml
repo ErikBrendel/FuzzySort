@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Tweakable:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts</output-path>
+    <root id="archive" name="Tweakable.jar">
+      <element id="module-output" name="FuzzySort" />
+    </root>
+  </artifact>
+</component>

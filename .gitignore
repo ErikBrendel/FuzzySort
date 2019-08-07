@@ -228,3 +228,8 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.gitignore.io/api/java,linux,macos,windows,intellij,intellij+iml
+
+# selfcreated
+
+.idea/$CACHE_FILE$
+.idea/$PRODUCT_WORKSPACE_FILE$
