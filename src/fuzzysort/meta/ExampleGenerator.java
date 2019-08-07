@@ -14,16 +14,17 @@ import java.util.function.Function;
 
 public class ExampleGenerator {
 
-    public static final boolean VisualsEnabled = true;
+    public static final boolean VisualsEnabled = false;
 
     private static final int itemCount = 400;
 
     public static void main(String[] args) {
+        Random r = new Random();
         List<Integer> ints = new ArrayList<>(itemCount);
         for (int i = 0; i < itemCount; i++) {
             ints.add(i);
         }
-        Collections.shuffle(ints);
+        Collections.shuffle(ints, r);
         AtomicInteger count = new AtomicInteger(0);
         ints.sort((a, b) -> {
             count.incrementAndGet();
@@ -31,7 +32,6 @@ public class ExampleGenerator {
         });
         System.out.println("Comparison count for sorting: " + count);
 
-        Random r = new Random();
         FuzzySortInstance instance = fromInts(itemCount, r);
 
         //Function<ToCompare, FuzzyComparison> model = fixedOffComp(r, instance, 6);

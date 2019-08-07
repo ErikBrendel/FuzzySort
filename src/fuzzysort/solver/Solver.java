@@ -97,7 +97,7 @@ public class Solver {
                 }
             }
             String compareItem = itemPool.get(r.nextInt(itemPool.size()));
-            System.out.println(trunkOrder.stream().map((i) -> graph.getNode(i).getEdgeCount() + "").reduce((a, b) -> a + "," + b));
+            //System.out.println(trunkOrder.stream().map((i) -> graph.getNode(i).getEdgeCount() + "").reduce((a, b) -> a + "," + b));
             addComparison(input.apply(new ToCompare(newItem, compareItem)));
             return;
         }

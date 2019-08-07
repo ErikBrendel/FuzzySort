@@ -2,9 +2,11 @@ package fuzzysort.meta;
 
 import fuzzysort.model.FuzzyComparison;
 import fuzzysort.model.FuzzySortInstance;
+import fuzzysort.model.ToCompare;
 import fuzzysort.solver.Solver;
 
 import java.util.*;
+import java.util.function.Function;
 
 public class Tweakable {
     public static void main(String[] args) {
@@ -31,17 +33,21 @@ public class Tweakable {
 
         long startTime = System.currentTimeMillis();
 
+        //Function<ToCompare, FuzzyComparison> compModel = ExampleGenerator.fixedOffComp(r, instance, offMax);
+        Function<ToCompare, FuzzyComparison> compModel = ExampleGenerator.categoricalOffComp(r, instance, offMax);
+
         List<String> result = new Solver(instance, dimensions, graphIterations, forceRelation, forceAmount, r, accuToStrengthBase)
-                .interactiveFill(ExampleGenerator.fixedOffComp(r, instance, offMax), connectionCount);
+                .interactiveFill(compModel, connectionCount);
 
         long endTime = System.currentTimeMillis();
         float seconds = (endTime - startTime) / 1000f;
 
         int diff = 0;
         for (int i = 0; i < itemCount; i++) {
-            diff += Math.abs(Integer.parseInt(result.get(i)) - i + 1);
+            int thisDiff = Math.abs(Integer.parseInt(result.get(i)) - i + 1);
+            diff += thisDiff * thisDiff;
         }
-        double unsortedness = diff / (double) itemCount;
+        double unsortedness = Math.sqrt(diff / (double) itemCount);
         System.out.println(-unsortedness + " " + seconds);
     }
 
