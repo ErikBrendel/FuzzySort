@@ -2,6 +2,7 @@ package fuzzysort.meta;
 
 import fuzzysort.model.FuzzyComparison;
 import fuzzysort.model.FuzzySortInstance;
+import fuzzysort.model.ToCompare;
 import fuzzysort.solver.Solver;
 
 import java.util.ArrayList;
@@ -9,12 +10,13 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.Function;
 
 public class ExampleGenerator {
 
     public static final boolean VisualsEnabled = true;
 
-    private static final int itemCount = 70;
+    private static final int itemCount = 400;
 
     public static void main(String[] args) {
         List<Integer> ints = new ArrayList<>(itemCount);
@@ -31,12 +33,42 @@ public class ExampleGenerator {
 
         Random r = new Random();
         FuzzySortInstance instance = fromInts(itemCount, r);
-        new Solver(instance, 1, 1800, 0.93f, 5.7f, r, 2.6f).interactiveFill((task) -> {
+
+        //Function<ToCompare, FuzzyComparison> model = fixedOffComp(r, instance, 6);
+        Function<ToCompare, FuzzyComparison> model = categoricalOffComp(r, instance, 10);
+
+        new Solver(instance, 1, 1800, 0.93f, 4.7f, r, 2.6f)
+                .interactiveFill(model, 500);
+    }
+
+    public static Function<ToCompare, FuzzyComparison> fixedOffComp(Random r, FuzzySortInstance instance, int offRadius) {
+        int offDia = offRadius * 2 + 1;
+        return (task) -> {
             int v1 = Integer.parseInt(task.item1);
             int v2 = Integer.parseInt(task.item2);
-            int off = r.nextInt(13) - 6;
+            int off = r.nextInt(offDia) - offRadius;
             return new FuzzyComparison(instance, task.item1, task.item2, v2 - v1 + off, Math.abs(off));
-        }, 120);
+        };
+    }
+
+    public static Function<ToCompare, FuzzyComparison> categoricalOffComp(Random r, FuzzySortInstance instance, int offRadius) {
+        int offDia = offRadius * 2 + 1;
+        return (task) -> {
+            int v1 = Integer.parseInt(task.item1);
+            int v2 = Integer.parseInt(task.item2);
+            int diff = v2 - v1;
+            int absDiff = Math.abs(diff);
+            float accuracy = FuzzyComparison.ACCURACY_HIGH;
+            if (absDiff < 5) {
+                accuracy = FuzzyComparison.ACCURACY_VAGUE;
+            } else if (absDiff < 10) {
+                accuracy = FuzzyComparison.ACCURACY_LOW;
+            } else if (absDiff < 20) {
+                accuracy = FuzzyComparison.ACCURACY_MIDDLE;
+            }
+            int off = r.nextInt(offDia) - offRadius;
+            return new FuzzyComparison(instance, task.item1, task.item2, v2 - v1 + off, accuracy);
+        };
     }
 
     public static FuzzySortInstance fromInts(int count, Random r) {

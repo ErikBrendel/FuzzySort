@@ -44,9 +44,12 @@ public class Solver {
                 System.out.println(String.join(",", graph.getItemOrder()));
             }
             fillConnection(input);
-            solve(graphIterations, forceAmount);
+            solve(graphIterations / 2, forceAmount);
+            for (float f = 1; f > 0; f -= 0.1f) {
+                solve(graphIterations / 20, forceAmount * f);
+            }
         }
-        for (float f = 1; f > 0; f -= 0.0001f) {
+        for (float f = 1; f > 0; f -= 0.001f) {
             solve(graphIterations / 10, forceAmount * f);
         }
         if (VisualsEnabled) {

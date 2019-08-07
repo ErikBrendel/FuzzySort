@@ -18,7 +18,6 @@ public class Tweakable {
         int itemCount = Integer.parseInt(instanceConfig[0]);
         int connectionCount = Integer.parseInt(instanceConfig[1]);
         int offMax = Integer.parseInt(instanceConfig[2]);
-        int offRange = offMax * 2 + 1;
 
         // parameter loading
         float forceRelation = Float.parseFloat(arguments.get("--forceRelation"));
@@ -32,12 +31,8 @@ public class Tweakable {
 
         long startTime = System.currentTimeMillis();
 
-        List<String> result = new Solver(instance, dimensions, graphIterations, forceRelation, forceAmount, r, accuToStrengthBase).interactiveFill((task) -> {
-            int v1 = Integer.parseInt(task.item1);
-            int v2 = Integer.parseInt(task.item2);
-            int off = r.nextInt(offRange) - offMax;
-            return new FuzzyComparison(instance, task.item1, task.item2, v2 - v1 + off, Math.abs(off));
-        }, connectionCount);
+        List<String> result = new Solver(instance, dimensions, graphIterations, forceRelation, forceAmount, r, accuToStrengthBase)
+                .interactiveFill(ExampleGenerator.fixedOffComp(r, instance, offMax), connectionCount);
 
         long endTime = System.currentTimeMillis();
         float seconds = (endTime - startTime) / 1000f;

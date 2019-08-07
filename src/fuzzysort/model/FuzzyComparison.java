@@ -1,7 +1,10 @@
 package fuzzysort.model;
 
 public class FuzzyComparison {
-    private static final String COMMA = ",";
+    public static float ACCURACY_HIGH = 0;
+    public static float ACCURACY_MIDDLE = 2;
+    public static float ACCURACY_LOW = 4;
+    public static float ACCURACY_VAGUE = 6;
 
     public final FuzzySortInstance instance;
     public final String item1;
@@ -10,12 +13,12 @@ public class FuzzyComparison {
     public final float accuracy;
 
     public FuzzyComparison(FuzzySortInstance instance, String data) {
-        this(instance, data.split(COMMA)[0], data.split(COMMA)[1],
-                Float.parseFloat(data.split(COMMA)[2]), Float.parseFloat(data.split(COMMA)[3]));
+        this(instance, data.split(",")[0], data.split(",")[1],
+                Float.parseFloat(data.split(",")[2]), Float.parseFloat(data.split(",")[3]));
     }
 
     public String serialize() {
-        return item1 + COMMA + item2 + COMMA + relation + COMMA + accuracy;
+        return item1 + "," + item2 + "," + relation + "," + accuracy;
     }
 
     public FuzzyComparison(FuzzySortInstance instance, String item1, String item2, float relation, float accuracy) {
