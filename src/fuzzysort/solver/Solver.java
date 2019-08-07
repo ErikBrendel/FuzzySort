@@ -49,7 +49,7 @@ public class Solver {
                 solve(graphIterations / 20, forceAmount * f);
             }
         }
-        for (float f = 1; f > 0; f -= 0.001f) {
+        for (float f = 1; f > 0; f -= 0.0005f) {
             solve(graphIterations / 10, forceAmount * f);
         }
         if (VisualsEnabled) {

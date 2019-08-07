@@ -14,7 +14,7 @@ import java.util.function.Function;
 
 public class ExampleGenerator {
 
-    public static final boolean VisualsEnabled = false;
+    public static final boolean VisualsEnabled = true;
 
     private static final int itemCount = 400;
 
@@ -37,7 +37,7 @@ public class ExampleGenerator {
         //Function<ToCompare, FuzzyComparison> model = fixedOffComp(r, instance, 6);
         Function<ToCompare, FuzzyComparison> model = categoricalOffComp(r, instance, 10);
 
-        new Solver(instance, 1, 1800, 0.63f, 4.7f, r, 2.6f)
+        new Solver(instance, 0, 400, 0.9f, 17f, r, 2.2f)
                 .interactiveFill(model, 500);
     }
 
