@@ -37,7 +37,7 @@ public class ExampleGenerator {
         //Function<ToCompare, FuzzyComparison> model = fixedOffComp(r, instance, 6);
         Function<ToCompare, FuzzyComparison> model = categoricalOffComp(r, instance, 10);
 
-        new Solver(instance, 1, 1800, 0.93f, 4.7f, r, 2.6f)
+        new Solver(instance, 1, 1800, 0.63f, 4.7f, r, 2.6f)
                 .interactiveFill(model, 500);
     }
 

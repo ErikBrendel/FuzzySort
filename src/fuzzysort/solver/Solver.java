@@ -75,18 +75,52 @@ public class Solver {
             List<String> trunkOrder = graph.getItemOrder().stream()
                     .filter((item) -> graph.areConnected(n1, graph.getNode(item)))
                     .collect(Collectors.toList());
+            int maxEdges = 1;
+            for (String item : trunkOrder) {
+                maxEdges = Math.max(maxEdges, graph.getNode(item).getEdgeCount());
+            }
+            List<String> itemPool = new ArrayList<>();
             String middleItem = trunkOrder.get(trunkOrder.size()/2);
-            addComparison(input.apply(new ToCompare(newItem, middleItem)));
+            itemPool.add(middleItem);
+            for (int ti = 0; ti < trunkOrder.size(); ti++) {
+                String item = trunkOrder.get(ti);
+                Graph.Node node = graph.getNode(item);
+                int openConnections = maxEdges - node.getEdgeCount();
+                float halfWidth = trunkOrder.size() / 2f;
+                float absIndex = ti - halfWidth;
+                double gaussBase = Math.pow(10, 1.4f / (halfWidth * halfWidth));
+                double gauss = Math.pow(gaussBase, - (absIndex * absIndex)) - 0.1;
+                double probability = openConnections * gauss;
+                int probInt = (int)Math.round(probability);
+                for (int p = 0; p < probInt; p++) {
+                    itemPool.add(item);
+                }
+            }
+            String compareItem = itemPool.get(r.nextInt(itemPool.size()));
+            System.out.println(trunkOrder.stream().map((i) -> graph.getNode(i).getEdgeCount() + "").reduce((a, b) -> a + "," + b));
+            addComparison(input.apply(new ToCompare(newItem, compareItem)));
             return;
         }
 
-        // otherwise, for each node, find the one the most away logically,
-        // and connect a random pair of the farthest nodes
+        // otherwise: make impactful connections
 
+        // find a set of nodes with the least connections (these tend to produce outliers)
+        int connectionCount = itemCount;
+        Set<Graph.Node> lonelyNodes = new HashSet<>(itemCount);
+        for (String item: items) {
+            Graph.Node node = graph.getNode(item);
+            if (node.getEdgeCount() < connectionCount) {
+                connectionCount = node.getEdgeCount();
+                lonelyNodes.clear();
+            }
+            lonelyNodes.add(node);
+        }
+
+        // for each lonely node, find the one the farthest away logically,
+        // and then connect a random pair of the farthest nodes
         AtomicInteger furthest = new AtomicInteger(1);
         Set<Graph.NodePair> farAwayCandidates = new HashSet<>(itemCount * itemCount / 2);
-        for (String item: items) {
-            Graph.Node source = graph.getNode(item);
+        for (Graph.Node source: lonelyNodes) {
             graph.search(source, (node, depth) -> {
                 if (node == source) return;
                 if (depth > furthest.get()) {

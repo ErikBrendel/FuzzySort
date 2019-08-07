@@ -159,6 +159,10 @@ public class Graph {
             }
             return (float)Math.sqrt(sum);
         }
+
+        public int getEdgeCount() {
+            return edges.size();
+        }
     }
 
     public static class NodePair {
