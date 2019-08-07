@@ -9,7 +9,7 @@ import java.text.DecimalFormat;
 
 public abstract class Display2D extends JPanel {
     protected static final boolean equalScaleDimensions = false;
-    protected static final int padding = 20;
+    protected static final int padding = 30;
     protected static final int DotRadius = 3;
     protected static final int DotDiameter = DotRadius * 2 + 1;
     protected static final DecimalFormat df = new DecimalFormat("00.00");
@@ -90,7 +90,7 @@ public abstract class Display2D extends JPanel {
         JFrame frame = new JFrame("FuzzySort");
         frame.setContentPane(this);
         frame.setSize(500, 500);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setVisible(true);
         new Thread(() -> {
             while (true) {

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FuzzySortInstance {
-    private Path path;
+    public Path path;
     private List<String> items = new ArrayList<>();
     private List<FuzzyComparison> comparisons = new ArrayList<>();
 
@@ -15,10 +15,6 @@ public class FuzzySortInstance {
 
     public List<String> getItems() {
         return items;
-    }
-
-    public Path getPath() {
-        return path;
     }
 
     public List<FuzzyComparison> getComparisons() {

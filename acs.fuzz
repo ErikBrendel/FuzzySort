@@ -1,1 +1,72 @@
-More Bullets,Adrenaline Rush,All In,Attacking Speed +0,Battle Cry,Big Laser,Bigger Weapons,Blast Protection,Bomb,Boomeraxe,Bullet Time,Catchy Tornado,Charge Shot,Cheater,Curse,Damage +0,Doping,Explosive Bullets,Fast Fighter,Forbidden Ritual,Freeze,Heal,Heavy Fighter,Increase Deck Space,Instant Fortress,Laser Sight,Lifebelt,Magnet,Obesity,Overcharge,Poison Attacks,Poisoneer,Recycling,Ricochet,Running Faster,Shield,Shuffle,Shuriken,Stable Shot,Stun,Supersonic speed,Tornado,Trap
+Stun,Instant Fortress,Cheater,More Bullets,Trap,Freeze,Curse,Running Faster,Lifebelt,Obesity,Poisoneer,Supersonic speed,Poison Attacks,Overcharge,Adrenaline Rush,Shuffle,Stable Shot,Heavy Fighter,Damage +0,Recycling,Catchy Tornado,Tornado,Doping,Blast Protection,Heal,Magnet,Explosive Bullets,Attacking Speed +0,Boomeraxe,Bomb,Big Laser,Laser Sight,Bullet Time,Fast Fighter,Charge Shot,Ricochet,Forbidden Ritual,Shuriken,Bigger Weapons,Battle Cry,All In,Shield
+Instant Fortress,Stun,4.81,3.35
+Cheater,Stun,-3.87,1.27
+More Bullets,Stun,-3.9399998,0.59
+Trap,Cheater,-9.599999,0.24
+Freeze,Cheater,-5.56,0.39999998
+Curse,Freeze,3.06,3.27
+Running Faster,More Bullets,-7.23,1.02
+Lifebelt,Curse,-5.62,3.56
+Obesity,Lifebelt,-4.75,2.44
+Poisoneer,Running Faster,3.3799999,1.3399999
+Supersonic speed,Poisoneer,0.5,6.0
+Poison Attacks,Poisoneer,-6.46,2.6
+Overcharge,Supersonic speed,-6.97,0.32
+Adrenaline Rush,Supersonic speed,-5.47,3.85
+Shuffle,More Bullets,5.02,1.78
+Stable Shot,Lifebelt,8.25,1.31
+Heavy Fighter,Overcharge,3.31,5.73
+Damage +0,Freeze,6.3599997,1.15
+Recycling,Stable Shot,-5.89,1.23
+Catchy Tornado,Heavy Fighter,-3.0,4.36
+Tornado,Running Faster,6.7,2.55
+Doping,Heavy Fighter,6.0899997,1.56
+Blast Protection,Recycling,-6.49,4.15
+Heal,Recycling,-10.0,0.0
+Magnet,Heavy Fighter,8.25,1.15
+Explosive Bullets,Freeze,7.1,0.72999996
+Attacking Speed +0,Adrenaline Rush,-3.35,2.53
+Boomeraxe,Doping,-6.0899997,1.54
+Bomb,Curse,-4.0699997,4.46
+Big Laser,Bomb,4.3399997,1.13
+Laser Sight,Recycling,-3.9399998,2.3799999
+Bullet Time,Adrenaline Rush,3.23,3.24
+Fast Fighter,Trap,8.45,0.5
+Charge Shot,Lifebelt,6.3599997,1.49
+Ricochet,Laser Sight,6.43,2.26
+Forbidden Ritual,Tornado,-2.7,3.3
+Shuriken,Big Laser,-2.6599998,3.07
+Bigger Weapons,Magnet,-3.11,4.29
+Battle Cry,Tornado,-7.7799997,0.5
+All In,Bullet Time,-4.2799997,3.09
+Shield,Ricochet,-5.96,0.78999996
+Curse,Obesity,7.04,2.44
+Shuffle,Trap,8.72,2.1599998
+Poisoneer,Cheater,-2.3899999,3.23
+Heal,Bigger Weapons,-7.85,0.5
+All In,Bomb,-3.74,3.62
+Catchy Tornado,Heavy Fighter,-4.48,1.48
+Bullet Time,Charge Shot,-2.79,1.9799999
+Obesity,Adrenaline Rush,-8.389999,0.5
+Adrenaline Rush,Running Faster,7.0499997,1.23
+Freeze,Obesity,-2.05,1.7199999
+Fast Fighter,Heavy Fighter,-5.77,0.5
+Shield,Charge Shot,-4.0099998,1.88
+All In,Ricochet,-2.26,4.12
+Freeze,Damage +0,-4.81,2.83
+Poison Attacks,Fast Fighter,0.0,2.0
+Explosive Bullets,Big Laser,-4.42,1.1
+Boomeraxe,Doping,-4.0699997,2.0
+Tornado,Laser Sight,6.8399997,1.09
+Boomeraxe,Forbidden Ritual,-1.3,5.7999997
+Forbidden Ritual,Poison Attacks,5.0299997,2.76
+Blast Protection,All In,-4.75,4.24
+Heal,Curse,-8.05,1.29
+Charge Shot,Instant Fortress,-2.27,3.9299998
+Shuriken,Doping,-3.9399998,3.8799999
+Forbidden Ritual,Poisoneer,-3.1899998,3.79
+Shuriken,Overcharge,6.3599997,2.6699998
+Charge Shot,Running Faster,6.91,1.26
+Attacking Speed +0,Big Laser,-5.42,2.49
+Battle Cry,Bigger Weapons,-4.48,3.49
+Magnet,Shield,6.2999997,1.37

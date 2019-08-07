@@ -16,7 +16,7 @@ public class Main {
         //if (result != JFileChooser.APPROVE_OPTION) return;
         //FuzzySortInstance instance = IO.load(chooser.getSelectedFile());
 
-        FuzzySortInstance instance = IO.load(new File("/media/erik/brot/projects/FuzzySort/acs.fuzz"));
+        FuzzySortInstance instance = IO.load(new File("/media/erik/brot/projects/FuzzySort/acs.fuzz").toPath());
         new MainWindow(instance).setVisible(true);
     }
 }

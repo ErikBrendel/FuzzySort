@@ -4,6 +4,8 @@ import fuzzysort.model.FuzzyComparison;
 import fuzzysort.model.FuzzySortInstance;
 import fuzzysort.model.ToCompare;
 import fuzzysort.solver.Solver;
+import fuzzysort.ui.GraphDisplay;
+import fuzzysort.ui.SortDisplay;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -37,8 +39,12 @@ public class ExampleGenerator {
         //Function<ToCompare, FuzzyComparison> model = fixedOffComp(r, instance, 6);
         Function<ToCompare, FuzzyComparison> model = categoricalOffComp(r, instance, 10);
 
-        new Solver(instance, 0, 400, 0.9f, 17f, r, 2.2f)
-                .interactiveFill(model, 500);
+        Solver solver = new Solver(instance, 0, 400, 0.9f, 17f, r, 2.2f);
+        if (VisualsEnabled) {
+            new GraphDisplay(solver.graph).showWindow();
+            new SortDisplay(solver.graph).showWindow();
+        }
+        solver.interactiveFill(model, 500);
     }
 
     public static Function<ToCompare, FuzzyComparison> fixedOffComp(Random r, FuzzySortInstance instance, int offRadius) {

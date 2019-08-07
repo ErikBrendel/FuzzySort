@@ -4,9 +4,13 @@ import fuzzysort.model.FuzzyComparison;
 import fuzzysort.model.FuzzySortInstance;
 import fuzzysort.model.ToCompare;
 import fuzzysort.solver.Solver;
+import fuzzysort.ui.GraphDisplay;
+import fuzzysort.ui.SortDisplay;
 
 import java.util.*;
 import java.util.function.Function;
+
+import static fuzzysort.meta.ExampleGenerator.VisualsEnabled;
 
 public class Tweakable {
     public static void main(String[] args) {
@@ -36,8 +40,12 @@ public class Tweakable {
         //Function<ToCompare, FuzzyComparison> compModel = ExampleGenerator.fixedOffComp(r, instance, offMax);
         Function<ToCompare, FuzzyComparison> compModel = ExampleGenerator.categoricalOffComp(r, instance, offMax);
 
-        List<String> result = new Solver(instance, dimensions, graphIterations, forceRelation, forceAmount, r, accuToStrengthBase)
-                .interactiveFill(compModel, connectionCount);
+        Solver solver = new Solver(instance, dimensions, graphIterations, forceRelation, forceAmount, r, accuToStrengthBase);
+        if (VisualsEnabled) {
+            new GraphDisplay(solver.graph).showWindow();
+            new SortDisplay(solver.graph).showWindow();
+        }
+        List<String> result = solver.interactiveFill(compModel, connectionCount);
 
         long endTime = System.currentTimeMillis();
         float seconds = (endTime - startTime) / 1000f;

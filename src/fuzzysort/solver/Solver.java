@@ -19,7 +19,7 @@ public class Solver {
     private final Random r;
     private final float accuToStrengthBase;
     private final float forceAmount;
-    private final Graph graph;
+    public final Graph graph;
 
     public Solver(FuzzySortInstance instance, int dimensions, int graphIterations, float forceRelation, float forceAmount, Random r, float accuToStrengthBase) {
         this.instance = instance;
@@ -32,10 +32,6 @@ public class Solver {
             this.graph.connect(this.graph.getNode(comp.item1), this.graph.getNode(comp.item2),
                     relationToDiff(comp.relation), accuracyToStrength(comp.accuracy));
         }
-        if (VisualsEnabled) {
-            new GraphDisplay(this.graph).showWindow();
-            new SortDisplay(this.graph).showWindow();
-        }
     }
 
     public List<String> interactiveFill(Function<ToCompare, FuzzyComparison> input, int connections) {
@@ -44,9 +40,11 @@ public class Solver {
                 System.out.println(String.join(",", graph.getItemOrder()));
             }
             fillConnection(input);
-            solve(graphIterations / 2, forceAmount);
-            for (float f = 1; f > 0; f -= 0.1f) {
-                solve(graphIterations / 20, forceAmount * f);
+            if (c < connections - 1) {
+                solve(graphIterations / 2, forceAmount);
+                for (float f = 1; f > 0; f -= 0.1f) {
+                    solve(graphIterations / 20, forceAmount * f);
+                }
             }
         }
         for (float f = 1; f > 0; f -= 0.0005f) {
@@ -146,7 +144,7 @@ public class Solver {
     public void solve(int iterations, float forceAmount) {
         for (int i = 0; i < iterations; i++) {
             solveStep(forceAmount);
-            if (VisualsEnabled && i % 50 == 0) {
+            if (VisualsEnabled && i % 10 == 0) {
                 try {
                     Thread.sleep(2);
                 } catch (InterruptedException ex) {
